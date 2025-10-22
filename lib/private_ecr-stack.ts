@@ -52,7 +52,8 @@ export class PrivateEcrStack extends cdk.Stack {
         },
         repository,
         tagOrDigest: 'latest'
-      })
+      }),
+      autoDeploymentsEnabled: true
     });
 
     // ECRリポジトリURIを出力
