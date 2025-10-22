@@ -1,14 +1,39 @@
-# Welcome to your CDK TypeScript project
+# Vulnerable ECR Demo
 
-This is a blank project for CDK development with TypeScript.
+ECRのセキュリティリスクを検証するためのデモ環境です。
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+## アーキテクチャ
 
-## Useful commands
+![Architecture](drawio/architecture.png)
 
-* `npm run build`   compile typescript to js
-* `npm run watch`   watch for changes and compile
-* `npm run test`    perform the jest unit tests
-* `npx cdk deploy`  deploy this stack to your default AWS account/region
-* `npx cdk diff`    compare deployed stack with current state
-* `npx cdk synth`   emits the synthesized CloudFormation template
+## 概要
+
+このプロジェクトは、ECRリポジトリのセキュリティ設定の重要性を示すデモ環境です。
+
+### 構成要素
+
+- **ECR**: プライベートリポジトリ（すべてのアカウントからアクセス可能に設定）
+- **App Runner**: Webアプリケーションをホスト
+- **Flask App**: 改ざんしやすいシンプルなWebアプリ
+
+### セキュリティリスク
+
+1. **リポジトリポリシー**: すべてのアカウントからの接続を許可
+2. **latestタグ**: 固定タグの使用により改ざんリスクが高い
+
+## デプロイ方法
+
+```bash
+npm install
+npx cdk deploy --profile <your-profile>
+```
+
+## 検証シナリオ
+
+1. 別アカウントからECRイメージをPull
+2. アプリケーションを改ざん
+3. 同じタグでPushして破壊活動を実行
+
+## 注意
+
+このプロジェクトは教育目的のみで使用してください。
