@@ -24,7 +24,14 @@ ECRのセキュリティリスクを検証するためのデモ環境です。
 ## デプロイ方法
 
 ```bash
+# リポジトリをクローン
+git clone https://github.com/kyo-tsun/Vulnerable-ECR.git
+cd Vulnerable-ECR
+
+# 依存関係をインストール
 npm install
+
+# CDKでデプロイ
 npx cdk deploy --profile <your-profile>
 ```
 
